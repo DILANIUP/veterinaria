@@ -41,7 +41,7 @@ class ButtonPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset(
-                        'images/tortuga.jpg', 
+                        'images/login_fondo.jpg', 
                         height: 150,
                         width: 150,
                         fit: BoxFit.cover,
@@ -74,7 +74,7 @@ class ButtonPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset(
-                        'images/rana.jpg', 
+                        'images/registro.jpg', 
                         height: 150,
                         width: 150,
                         fit: BoxFit.cover,

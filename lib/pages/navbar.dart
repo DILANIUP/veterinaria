@@ -10,8 +10,8 @@ class Navbar extends StatelessWidget {
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("Dilan Urquizo"), 
-            accountEmail: Text("dip.urquizo@yavirac.edu.ec"),
+            accountName: Text(""), 
+            accountEmail: Text(""),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.asset("images/user.jpg"),
