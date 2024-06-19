@@ -19,8 +19,8 @@ class Navbar extends StatelessWidget {
             ),
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("images/fondo_navbar.jpg"), // Ruta de la imagen de fondo
-                fit: BoxFit.cover, // Ajuste de la imagen
+                image: AssetImage("images/fondo_navbar.jpg"), 
+                fit: BoxFit.cover, 
               ),
           )
             ),
@@ -86,21 +86,19 @@ class Navbar extends StatelessWidget {
                 Navigator.pushNamed(context, "/userlist"),
                 }
             ),
-
-
+          
             Divider(color: Colors.black,
             thickness: 1.0,
             indent: 16.0,
             endIndent: 16.0,),
-            ListTile(
-              leading: Icon(Icons.ac_unit),
-              title: Text("Inicial"),
-              trailing: Icon(Icons.arrow_right),
-              onTap: () => {
-                Navigator.pushNamed(context, "/buttonPage"),
-                }
-            ),
-          
+             ListTile(
+            leading: Icon(Icons.logout),
+            title: Text("Cerrar Sesion"),
+            trailing: Icon(Icons.arrow_right),
+            onTap: () {
+              Navigator.pushNamed(context, '/buttonPage');
+            },
+          ),
 
         ]
       )

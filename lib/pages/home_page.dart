@@ -15,13 +15,13 @@ class _HomeState extends State<Home> {
     return Scaffold(
       drawer: const Navbar(),
       appBar: AppBar(
-        title: const Text('Material App Bar'),
+        title: const Text('Información de la mascota'),
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/fondo_pets.jpg'), // Ruta de la imagen de fondo
-            fit: BoxFit.cover, // Ajuste de la imagen
+            image: AssetImage('images/fondo_pets.jpg'), 
+            fit: BoxFit.cover, 
           ),
         ),
         child: FutureBuilder(
@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
             } else {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Dos columnas
+                  crossAxisCount: 2, 
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
                 ),
@@ -65,14 +65,14 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: 120, // Altura de la imagen
+                              height: 120, 
                               width: 120,
                               child: Image.network(
                                 'images/animal_perfil.jpg',
-                                fit: BoxFit.cover, // Ajuste de la imagen
+                                fit: BoxFit.cover, 
                               ),
                             ),
-                            SizedBox(width: 16), // Espacio entre la imagen y los campos de texto
+                            SizedBox(width: 16), 
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +84,7 @@ class _HomeState extends State<Home> {
                                       labelText: 'Nombre',
                                       labelStyle: TextStyle(color: Colors.black),
                                     ),
-                                    style: TextStyle(color: Colors.black), // Texto negro
+                                    style: TextStyle(color: Colors.black), 
                                   ),
                                   TextFormField(
                                     initialValue: animalType,
@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
                                       labelText: 'Tipo',
                                       labelStyle: TextStyle(color: Colors.black),
                                     ),
-                                    style: TextStyle(color: Colors.black), // Texto negro
+                                    style: TextStyle(color: Colors.black), 
                                   ),
                                   TextFormField(
                                     initialValue: animalProblem,
@@ -102,9 +102,9 @@ class _HomeState extends State<Home> {
                                       labelText: 'Problema',
                                       labelStyle: TextStyle(color: Colors.black),
                                     ),
-                                    style: TextStyle(color: Colors.black), // Texto negro
+                                    style: TextStyle(color: Colors.black), 
                                   ),
-                                  SizedBox(height: 16), // Espacio entre los datos y el botón de eliminar
+                                  SizedBox(height: 16), 
                                   IconButton(
                                     icon: const Icon(Icons.delete),
                                     onPressed: () async {

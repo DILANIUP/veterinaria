@@ -14,15 +14,24 @@ class Login extends StatelessWidget {
   }
 }
 
-class UserListScreen extends StatelessWidget {
+class UserListScreen extends StatefulWidget {
+  @override
+  _UserListScreenState createState() => _UserListScreenState();
+}
+
+class _UserListScreenState extends State<UserListScreen> {
   final UserService userService = UserService();
+
+  Future<List> _getUsers() async {
+    return await userService.getUsers();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('User List')),
+      appBar: AppBar(title: Text('Lista de usuario')),
       body: FutureBuilder<List>(
-        future: userService.getUsers(),
+        future: _getUsers(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -36,15 +45,28 @@ class UserListScreen extends StatelessWidget {
               itemCount: users.length,
               itemBuilder: (context, index) {
                 var user = users[index];
-                return ListTile(
-                  title: Text(user['name']),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(user['email']),
-                      Text(user['phone']),
-                      Text(user['password']),
-                    ],
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ListTile(
+                      title: Text(user['name']),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Email: ${user['email']}"),
+                          Text("Phone: ${user['phone']}"),
+                          Text("Password: ${user['password']}"),
+                        ],
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () => _confirmDelete(context, user['uid']),
+                      ),
+                    ),
                   ),
                 );
               },
@@ -52,6 +74,34 @@ class UserListScreen extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  void _confirmDelete(BuildContext context, String uid) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Confirm Delete"),
+          content: Text("Are you sure you want to delete this user?"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Cancel"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("Delete"),
+              onPressed: () async {
+                await userService.deleteUser(uid);
+                Navigator.of(context).pop();
+                setState(() {});
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -75,5 +125,9 @@ class UserService {
       users.add(user);
     }
     return users;
+  }
+
+  Future<void> deleteUser(String uid) async {
+    await db.collection('users').doc(uid).delete();
   }
 }

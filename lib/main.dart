@@ -1,3 +1,4 @@
+
 import 'package:crud_firebase/pages/list_users.dart';
 import 'package:crud_firebase/pages/description_page.dart';
 import 'package:crud_firebase/pages/login.dart';
@@ -26,30 +27,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Drawer App',
-      initialRoute: "/",
+      initialRoute: "/buttonPage",
       routes: {
-        "/home": (context) => Home(),
         "/myapp": (context) => MyApp(),
+        "/home": (context) => Home(),
         "/update": (context) => UpdatePage(),
         "/save": (context) => SavePage(),
         "/description": (context) => DescriptionPage(),
         "/userlist": (context) => UserListScreen(),
         "/buttonPage": (context) => ButtonPage(),
-        "/register": (context) => Register(),
-        "/login": (context) => loguearse()
+        "/register": (context) => RegisterPage(),
+        "/login": (context) => LoginPage()
       },
       home: Scaffold(
         drawer: const Navbar(),
         appBar: AppBar(
           title: const Text('Bienvenido'),
           backgroundColor:
-              Color.fromARGB(255, 129, 196, 250), // Color del app bar
+              Color.fromARGB(255, 129, 196, 250), 
         ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  'images/fondo_pets.jpg'), // Ruta de la imagen de fondo
+                  'images/fondo_pets.jpg'
+                  ), 
               fit: BoxFit.cover,
             ),
           ),
@@ -85,7 +87,7 @@ class MyApp extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                              width: 20), // Espacio entre la Card y la imagen
+                              width: 20), 
                           Expanded(
                             flex: 1,
                             child: Image.asset(
@@ -100,14 +102,14 @@ class MyApp extends StatelessWidget {
                   ),
                   SizedBox(
                       height:
-                          20), // Espacio entre la primera Card y las siguientes Cards
+                          20), 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
                         flex: 1,
                         child: Card(
-                          color: Colors.lightBlue[50], // Color celeste opaco
+                          color: Colors.lightBlue[50], 
                           elevation: 4.0,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -116,7 +118,7 @@ class MyApp extends StatelessWidget {
                                 title: Text(
                                   '¿Cómo cuidar a tu mascota?',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold), // Negrita
+                                      fontWeight: FontWeight.bold), 
                                 ),
                                 subtitle: Text(
                                     'Cuidar de una mascota requiere compromiso, amor y responsabilidad. Independientemente del tipo de mascota, es crucial proporcionarles una dieta equilibrada y adecuada para su especie y tamaño, asegurarse de que tengan acceso constante a agua fresca y limpia, y proporcionar un entorno seguro y cómodo para vivir. Las visitas regulares al veterinario son esenciales para mantener la salud y detectar posibles problemas a tiempo.'),
@@ -137,11 +139,11 @@ class MyApp extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 20), // Espacio entre las Cards
+                      SizedBox(width: 20), 
                       Expanded(
                         flex: 1,
                         child: Card(
-                          color: Colors.lightBlue[50], // Color celeste opaco
+                          color: Colors.lightBlue[50], 
                           elevation: 4.0,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -154,7 +156,7 @@ class MyApp extends StatelessWidget {
                                 title: Text(
                                   'Recomendaciones para cuidar a tu mascota',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold), // Negrita
+                                      fontWeight: FontWeight.bold), 
                                 ),
                                 subtitle: Text(
                                     'Primero, asegúrate de proporcionar una dieta balanceada y adecuada para su especie, edad, y tamaño, evitando alimentos dañinos para su salud. Mantén su entorno limpio y seguro, con un espacio adecuado para dormir y jugar. Programa visitas regulares al veterinario para chequeos y vacunas, y mantén al día su higiene, incluyendo el cepillado y el baño según sea necesario.'),

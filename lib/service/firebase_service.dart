@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -40,3 +43,41 @@ Future<void> deleteAnimals(String uid) async {
     "phone": phone,
   });
 } */
+
+//Autenticacion - Login
+Future<Map<String, dynamic>?> authenticateUser(String nameOrEmail, String password) async {
+  String hashedPassword = sha256.convert(utf8.encode(password)).toString();
+  CollectionReference collectionReferencePeople = db.collection('users');
+  QuerySnapshot query = await collectionReferencePeople
+      .where('name', isEqualTo: nameOrEmail)
+      .where('password', isEqualTo: hashedPassword) // Compara la contraseña encriptada
+      .get();
+
+  if (query.docs.isEmpty) {
+    query = await collectionReferencePeople
+        .where('email', isEqualTo: nameOrEmail)
+        .where('password', isEqualTo: hashedPassword) // Compara la contraseña encriptada
+        .get();
+  }
+
+  if (query.docs.isNotEmpty) {
+    return query.docs.first.data() as Map<String, dynamic>;
+  }
+
+  return null;
+}
+
+
+// Recuerda definir este método fuera de cualquier clase.
+Future<void> addUser(String name, String password, String email, String phone) async {
+  await db.collection("users").add({
+    "name": name,
+    "password": password,
+    "email": email,
+    "phone": phone,
+  });
+}
+
+Future<void> updateUsers(String uid, String name,  String phone) async {
+  await db.collection("people").doc(uid).update({"name": name, "phone": phone});
+}
